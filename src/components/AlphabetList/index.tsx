@@ -95,7 +95,8 @@ export const AlphabetList: React.FC<AlphabetListProps> = (props) => {
         renderSectionHeader={onRenderSectionHeader}
         ListHeaderComponent={renderCustomListHeader}
         getItemLayout={onGetItemLayout}
-        initialNumToRender={Infinity}
+        maxToRenderPerBatch={5000}
+        initialNumToRender={5000}
       />
 
       <ListLetterIndex
