@@ -1,6 +1,12 @@
 import * as React from "react";
 import { useEffect, useState, useRef } from "react";
-import { SectionList, View, Text, SectionListData } from "react-native";
+import {
+  SectionList,
+  View,
+  Text,
+  SectionListData,
+  Platform,
+} from "react-native";
 import sectionListGetItemLayout from "react-native-section-list-get-item-layout";
 import { getSectionData } from "../../utils/getSectionData";
 import { ListLetterIndex } from "../ListLetterIndex";
@@ -98,16 +104,17 @@ export const AlphabetList: React.FC<AlphabetListProps> = (props) => {
         maxToRenderPerBatch={5000}
         initialNumToRender={5000}
       />
-
-      <ListLetterIndex
-        sectionData={sectionData}
-        onPressLetter={onScrollToSection}
-        indexContainerStyle={indexContainerStyle}
-        indexLetterStyle={indexLetterStyle}
-        indexLetterContainerStyle={indexLetterContainerStyle}
-        letterListContainerStyle={letterListContainerStyle}
-        renderCustomIndexLetter={renderCustomIndexLetter}
-      />
+      {Platform.OS === "ios" && (
+        <ListLetterIndex
+          sectionData={sectionData}
+          onPressLetter={onScrollToSection}
+          indexContainerStyle={indexContainerStyle}
+          indexLetterStyle={indexLetterStyle}
+          indexLetterContainerStyle={indexLetterContainerStyle}
+          letterListContainerStyle={letterListContainerStyle}
+          renderCustomIndexLetter={renderCustomIndexLetter}
+        />
+      )}
     </View>
   );
 };
